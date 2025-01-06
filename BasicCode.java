@@ -31,3 +31,31 @@ or int[] charCounts = new int[256]; // Assuming ASCII characters
         }
 ----------------------------------------------------------using java stream----------------
   
+    public static void main(String[] args) {
+        String input = "stream example";
+
+        // Count the occurrence of each character
+        Map<Character, Long> charCountMap = input.chars()
+            .mapToObj(c -> (char) c) // Convert int to Character
+            .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
+        // Print the result
+        charCountMap.forEach((character, count) -> 
+            System.out.println(character + ": " + count));
+    }
+}
+------------------------------------------------------------
+    public static void main(String[] args) {
+        String input = "stream example";
+
+        // Count the occurrence of each character
+        Map<Character, Long> charCountMap = input.chars()
+            .mapToObj(c -> (char) c) // Convert int to Character
+            .collect(Collectors.groupingBy(c -> c, Collectors.counting()));
+
+        // Print the result
+        charCountMap.forEach((character, count) -> 
+            System.out.println(character + ": " + count));
+    }
+}
+
