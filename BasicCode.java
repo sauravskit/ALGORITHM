@@ -30,41 +30,33 @@ or int[] charCounts = new int[256]; // Assuming ASCII characters
             }
         }
 ----------------------------------------------------------using java stream----------------
+    String input = "example"; // Example input string
 
-        String input = "example"; // Example input string
-
-        // Convert the string into a character array
-        char[] charArray = input.toCharArray();
+  // Split the string into characters
+        String[] charArray = input.split(""); // This splits into individual characters
 
         // Using Stream API to count occurrences of each character
-        Map<Character, Integer> charCountMap = Arrays.stream(charArray)
-            .boxed() // Convert primitive char to Character
-            .collect(Collectors.groupingBy(c -> c, Collectors.summingInt(c -> 1)));
+        Map<String, Long> charCountMap = Arrays.stream(charArray)
+            .collect(Collectors.groupingBy(c -> c, Collectors.counting())); // Collect and count
 
         // Print the result
+        System.out.println("Character counts:");
         charCountMap.forEach((character, count) -> 
             System.out.println(character + ": " + count));
 
-    or use  for(Map.Entry<Character, Integer> entry : counts.entrySet()){
+--------------------------------------------------------
+String input = "example"; // Example input string
+
+         Map<Character, Long> counts = input.chars()
+            .mapToObj(c -> (char) c) // Convert int to Character
+            .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));or Collectors.groupingBy(c->c, Collectors.counting()); 
+        for(Map.Entry<Character, Long> entry : counts.entrySet()){
             
                 System.out.println(entry.getKey() + ": " + entry.getValue());
             
         }
-    }
-}
---------------------------------------------------
-        String input = "stream example";
-
-        // Count the occurrence of each character
-        Map<Character, Long> charCountMap = input.chars()
-            .mapToObj(c -> (char) c) // Convert int to Character
-            .collect(Collectors.groupingBy(Function.identity(), Collectors.counting())); or Collectors.groupingBy(c->c, Collectors.counting()); 
-
-        // Print the result
-        charCountMap.forEach((character, count) -> 
-            System.out.println(character + ": " + count));
-    }
-}
+or usee
+        counts.forEach((character,count)->System.out.println(character+":"+count))
 
 ------------------------------------------------------------
    
