@@ -30,8 +30,6 @@ or int[] charCounts = new int[256]; // Assuming ASCII characters
             }
         }
 ----------------------------------------------------------using java stream----------------
-  
-    public static void main(String[] args) {
         String input = "stream example";
 
         // Count the occurrence of each character
@@ -44,6 +42,7 @@ or int[] charCounts = new int[256]; // Assuming ASCII characters
             System.out.println(character + ": " + count));
     }
 }
+
 ------------------------------------------------------------
     public static void main(String[] args) {
         String input = "stream example";
