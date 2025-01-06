@@ -30,6 +30,29 @@ or int[] charCounts = new int[256]; // Assuming ASCII characters
             }
         }
 ----------------------------------------------------------using java stream----------------
+
+        String input = "example"; // Example input string
+
+        // Convert the string into a character array
+        char[] charArray = input.toCharArray();
+
+        // Using Stream API to count occurrences of each character
+        Map<Character, Integer> charCountMap = Arrays.stream(charArray)
+            .boxed() // Convert primitive char to Character
+            .collect(Collectors.groupingBy(c -> c, Collectors.summingInt(c -> 1)));
+
+        // Print the result
+        charCountMap.forEach((character, count) -> 
+            System.out.println(character + ": " + count));
+
+    or use  for(Map.Entry<Character, Integer> entry : counts.entrySet()){
+            
+                System.out.println(entry.getKey() + ": " + entry.getValue());
+            
+        }
+    }
+}
+--------------------------------------------------
         String input = "stream example";
 
         // Count the occurrence of each character
@@ -44,17 +67,6 @@ or int[] charCounts = new int[256]; // Assuming ASCII characters
 }
 
 ------------------------------------------------------------
-    public static void main(String[] args) {
-        String input = "stream example";
-
-        // Count the occurrence of each character
-        Map<Character, Long> charCountMap = input.chars()
-            .mapToObj(c -> (char) c) // Convert int to Character
-            .collect(Collectors.groupingBy(c -> c, Collectors.counting()));
-
-        // Print the result
-        charCountMap.forEach((character, count) -> 
-            System.out.println(character + ": " + count));
-    }
+   
 }
 
