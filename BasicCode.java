@@ -58,7 +58,7 @@ or int[] charCounts = new int[256]; // Assuming ASCII characters
         // Count the occurrence of each character
         Map<Character, Long> charCountMap = input.chars()
             .mapToObj(c -> (char) c) // Convert int to Character
-            .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+            .collect(Collectors.groupingBy(Function.identity(), Collectors.counting())); or Collectors.groupingBy(c->c, Collectors.counting()); 
 
         // Print the result
         charCountMap.forEach((character, count) -> 
